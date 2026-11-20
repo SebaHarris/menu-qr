@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #111111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 12px;
+      gap: 14px;
+    }
+    .galeria {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .galeria img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      cursor: zoom-in;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+    /* Visor a pantalla completa al tocar una foto */
+    .visor {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.94);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      cursor: zoom-out;
+    }
+    .visor.activo {
+      display: flex;
+    }
+    .visor img {
+      max-width: 100%;
+      max-height: 95vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="galeria">
+    <img src="helados.jpg" alt="Helados de Bolsa" onclick="abrirVisor(this.src)">
+    <img src="frutas.jpg" alt="Frutas" onclick="abrirVisor(this.src)">
+  </main>
+
+  <div class="visor" id="visor" onclick="cerrarVisor()">
+    <img id="imagen-ampliada" src="" alt="Vista ampliada">
+  </div>
+
+  <script>
+    function abrirVisor(src) {
+      document.getElementById('imagen-ampliada').src = src;
+      document.getElementById('visor').classList.add('activo');
+    }
+    function cerrarVisor() {
+      document.getElementById('visor').classList.remove('activo');
+    }
+  </script>
+
+</body>
+</html>
